@@ -87,7 +87,7 @@
   - **ESLint**: <https://eslint.org/docs/latest/rules/>
   - **Airbnb Guide Style**: <https://airbnb.io/javascript/>
     - React: <https://airbnb.io/javascript/react/>
-  - ...
+  - **React Icons**: <https://react-icons.github.io/react-icons/>
 
 ## Demo
 

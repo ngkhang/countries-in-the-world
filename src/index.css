@@ -28,7 +28,7 @@ body {
 }
 
 .bg-error {
-  background-image: url('~/assets/bg-error.png');
+  background-image: url('/assets/bg-error.png');
   @apply bg-no-repeat;
   background-size: contain;
   background-position: bottom;

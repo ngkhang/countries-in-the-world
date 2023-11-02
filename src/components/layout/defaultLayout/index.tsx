@@ -6,7 +6,7 @@ function DefaultLayout({ children }: { children: React.ReactElement }) {
   return (
     <div className="relative min-h-screen flex flex-col">
       <Header />
-      <div className="flex justify-center flex-grow">
+      <div className="flex-grow flex">
         {children}
       </div>
       <Footer />

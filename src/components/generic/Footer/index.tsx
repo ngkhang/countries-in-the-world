@@ -4,13 +4,12 @@ const dbFooter = {
 
 function Footer() {
   return (
-    <div className="mt-5 text-center">
-      <p className="py-5 bg-blue-100">
+    <div className="text-center">
+      <p className="py-5 bg-blue-100 md:text-lg">
         &copy;
         <em id="date">
-          {new Date().getFullYear()}
+          {`${new Date().getFullYear()} ${dbFooter.title}`}
         </em>
-        {dbFooter.title}
       </p>
     </div>
   );

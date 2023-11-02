@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Icons from '~/utils/helpers/icons';
 
 const dbHeader = {
@@ -31,24 +31,26 @@ const dbHeader = {
 
 function Header() {
   return (
-    <div className="bg-slate-200">
-      <div className="grid grid-cols-3 gap-3 justify-items-stretch mx-3 py-2">
+    <div className="bg-slate-50 flex justify-center shadow-xl">
+      <div className="md:w-mainSize grid grid-cols-3 gap-3 justify-items-stretch mx-3 py-2">
         <div className="justify-self-start">
-          {Icons[dbHeader.logo]('w-full h-full')}
+          <Link to="/" className="">
+            {Icons[dbHeader.logo]('w-full h-full')}
+          </Link>
         </div>
         <div className="justify-self-center">
           {
             dbHeader.nav.map((item) => (
-              <Link key={item.id} to={item.url} className="mx-2">
+              <NavLink key={item.id} to={item.url} className="mx-2 md:mx-4 md:text-lg">
                 {item.title}
-              </Link>
+              </NavLink>
             ))
           }
         </div>
         <div className="justify-self-end flex">
           {
             dbHeader.social.map((item) => (
-              <Link key={item.id} to={item.url} className="ml-4">
+              <Link target="_blank" key={item.id} to={item.url} className="ml-4 md:ml-6 h-5 md:h-7">
                 {Icons[item.title]('w-full h-full')}
               </Link>
             ))

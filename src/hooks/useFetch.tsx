@@ -3,16 +3,16 @@ import Country from '~/types/Country';
 import fetchApi from '~/utils/functions/fetchApi';
 
 interface State {
-  rawData: Country[] | null,
+  rawData: Country[] | [],
   loading: boolean,
-  error: string | null
+  error: string
 }
 
 function useFetch(url: string) {
   const [data, setData] = useState<State>({
-    rawData: null,
+    rawData: [],
     loading: true,
-    error: null,
+    error: '',
   });
 
   useEffect(() => {
@@ -21,14 +21,14 @@ function useFetch(url: string) {
         setData({
           rawData,
           loading: false,
-          error: null,
+          error: '',
         });
       })
       .catch(({ message }) => {
         setData({
-          rawData: null,
-          error: message,
+          rawData: [],
           loading: false,
+          error: message,
         });
       });
   }, [url]);

@@ -5,7 +5,6 @@ import Country from '~/types/Country';
 interface eCountryCard {
   data: Country,
   width?: string,
-  className?: string | null
 }
 
 interface eRowInfo {
@@ -24,77 +23,89 @@ function RowInfo({
   );
 }
 
-function CountryCard({ data, width = 'w-1/4', className = '' }: eCountryCard) {
+function CountryCard({ data, width = 'w-1/4' }: eCountryCard) {
   return (
-    <div className={`${width} mb-4 ${className}`}>
-      <div className="h-full bg-slate-200 mx-2 p-2 box-border rounded-md flex flex-col">
-        <div className="text-center mb-2 h-full">
-          <h4 className="font-medium text-sm">{data.name.official}</h4>
-          {
-            data.name.nativeName && (
-              <p className="text-sm">{Object.values(data.name.nativeName)[0].official}</p>
-            )
-          }
-        </div>
-        <div className="flex-grow">
-          <div className="flex items-center">
-            <div className="w-full p-1"><img className="w-full" src={data.flags.png} alt={data.flags.alt} /></div>
-            <div className="w-full p-1"><img className="w-full" src={data.coatOfArms.png} alt="The coat of Arm" /></div>
+    <div className={`${width}`}>
+      <div className="h-full p-1 md:p-2 lg:p-4">
+        <div className="shadow-xl p-2 border box-border rounded-md flex flex-col justify-between hover:scale-105 overflow-hidden">
+          <div className="h-1/4 text-center mb-2 flex-grow">
+            <h4 className="font-medium text-sm">{data.name.official}</h4>
+            {
+              data.name.nativeName && (
+                <p className="text-sm">{Object.values(data.name.nativeName)[0].official}</p>
+              )
+            }
           </div>
-          <RowInfo title={data.name.common}>
-            <>
-              <div className="flex">
-                {
-                  data.capital && data.capitalInfo && (
-                    <>
-                      <span className="w-1/3">Capital</span>
-                      <div className="w-2/3">
-                        <p>{data.capital[0]}</p>
-                        {/* <p>{data.capitalInfo.latlng.join(' ')}</p> */}
-                      </div>
-                    </>
-                  )
-                }
-              </div>
-              <div className="flex">
-                <span className="mr-4">Region</span>
-                <div className="flex-grow">
-                  <p>{data.region}</p>
-                  <p>{data.subregion}</p>
-                  <a className="w-2/3" href={data.maps.googleMaps}>Map view</a>
-                </div>
-              </div>
-              <div className="flex">
-                <span className="mr-4">Languages</span>
-                <div className="flex-grow">
-                  {
-                    data.languages && Object.values(data.languages).map((lang) => <p>{lang}</p>)
-                  }
-                </div>
-              </div>
-              <div className="flex">
-                <span className="mr-5">Population</span>
-                <p className="w-2/3">{data.population}</p>
-              </div>
-            </>
-          </RowInfo>
-          <RowInfo>
-            <>
-              <div className="flex justify-between">
-                <span>Currency</span>
-                {
-                  data.currencies && (
-                    <span>{`${Object.values(data.currencies)[0].name}`}</span>
-                  )
-                }
-              </div>
-              <div className="flex justify-between">
-                <span>Time zone</span>
-                <span>{data.timezones[0]}</span>
-              </div>
-            </>
-          </RowInfo>
+
+          <div className="flex-grow">
+            <div className="flex items-center">
+              {
+                data.flags.png && <div className="w-full p-1"><img className="w-full" src={data.flags.png} alt={data.flags.alt} /></div>
+              }
+              {
+                data.coatOfArms.png && <div className="w-full p-1"><img className="w-full" src={data.coatOfArms.png} alt="The coat of Arm" /></div>
+              }
+            </div>
+
+            <div className="">
+              <RowInfo title={data.name.common}>
+                <>
+                  <div className="flex">
+                    {
+                      data.capital && data.capitalInfo && (
+                        <>
+                          <span className="w-1/2">Capital</span>
+                          <div className="flex-grow">
+                            <p>{data.capital[0]}</p>
+                            {data.capitalInfo.latlng && <p>{data.capitalInfo.latlng.join(' ')}</p>}
+                          </div>
+                        </>
+                      )
+                    }
+                  </div>
+                  <div className="flex">
+                    <span className="w-1/2">Region</span>
+                    <div className="flex-grow">
+                      <p>{data.region}</p>
+                      <p>{data.subregion}</p>
+                      <a className="w-2/3" href={data.maps.googleMaps}>Map view</a>
+                    </div>
+                  </div>
+                  <div className="flex">
+                    <span className="w-1/2">Languages</span>
+                    <div className="flex-grow">
+                      {
+                        data.languages && Object.values(data.languages).map((lang) => <p>{lang}</p>)
+                      }
+                    </div>
+                  </div>
+                  <div className="flex">
+                    <span className="w-1/2">Population</span>
+                    <p className="flex-grow">{data.population}</p>
+                  </div>
+                </>
+              </RowInfo>
+              <RowInfo>
+                <>
+                  <div className="flex">
+                    <span className="w-1/2">Currency</span>
+                    <div className="flex-grow">
+                      {
+                        data.currencies && <p className="break-words">{`${Object.values(data.currencies)[0].name}`}</p>
+                      }
+                    </div>
+                  </div>
+                  <div className="flex">
+                    <span className="w-1/2">Time zone</span>
+                    <p className="flex-grow">{data.timezones[0]}</p>
+                  </div>
+                </>
+              </RowInfo>
+            </div>
+
+          </div>
         </div>
+
       </div>
     </div>
   );

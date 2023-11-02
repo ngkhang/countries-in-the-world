@@ -26,3 +26,17 @@ body {
   background: -webkit-linear-gradient(0deg, #ffffff 0%, #64c0f2 100%);
   background: linear-gradient(0deg, #ffffff 0%, #64c0f2 100%);
 }
+
+.bg-error {
+  background-image: url('~/assets/bg-error.png');
+  @apply bg-no-repeat;
+  background-size: contain;
+  background-position: bottom;
+}
+
+.bg-dot {
+  background-color: #e3e3e3;
+  opacity: 0.8;
+  background-image: radial-gradient(#3c3c3f 0.5px, #f4f4f4 0.5px);
+  background-size: 10px 10px;
+}
